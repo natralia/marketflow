@@ -1,14 +1,26 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:marketflow/routes.dart';
+import 'package:marketflow/utils/custom_colors.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreenPage extends StatefulWidget {
+  const SplashScreenPage({Key? key}) : super(key: key);
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  _SplashScreenPageState createState() => _SplashScreenPageState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenPageState extends State<SplashScreenPage> {
+  @override
+  void initState() {
+    Timer(Duration(seconds: 4), () {
+      Navigator.of(context).pushNamed(Routes.home);
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -28,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Text(
                 'MARKETFLOW',
                 style: TextStyle(
-                  color: Color(0xff767676),
+                  color: CustomColors.textPrimary,
                   fontWeight: FontWeight.w600,
                   fontSize: 14,
                   letterSpacing: 2,
