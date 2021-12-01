@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:marketflow/utils/custom_colors.dart';
 
 class AppBarWidget extends PreferredSize {
-  AppBarWidget()
+  final String totalPrice;
+  AppBarWidget({required this.totalPrice})
       : super(
+          preferredSize: Size.fromHeight(160),
           child: Container(
             child: Stack(
               children: [
@@ -63,7 +65,7 @@ class AppBarWidget extends PreferredSize {
                               ),
                             ),
                             Text(
-                              'R\$ 65,99',
+                              totalPrice,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 24,
@@ -79,6 +81,5 @@ class AppBarWidget extends PreferredSize {
               ],
             ),
           ),
-          preferredSize: Size.fromHeight(160),
         );
 }

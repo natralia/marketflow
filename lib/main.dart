@@ -3,6 +3,7 @@ import 'package:marketflow/pages/form_page.dart';
 import 'package:marketflow/pages/home_page.dart';
 import 'package:marketflow/pages/splash_screen_page.dart';
 import 'package:marketflow/routes.dart';
+import 'package:marketflow/utils/custom_colors.dart';
 
 void main() {
   runApp(App());
@@ -21,6 +22,9 @@ class App extends StatelessWidget {
         Routes.form: (context) => FormPage(),
         Routes.splash: (context) => SplashScreenPage(),
       },
+      theme: ThemeData(
+        colorScheme: ColorScheme.light(primary: CustomColors.primary),
+      ),
     );
   }
 }

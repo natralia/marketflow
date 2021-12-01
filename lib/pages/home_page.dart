@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marketflow/routes.dart';
+import 'package:marketflow/services/cart_service.dart';
 import 'package:marketflow/utils/custom_colors.dart';
 import 'package:marketflow/widgets/app_bar_widget.dart';
 
@@ -13,111 +14,55 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CustomColors.background,
-      appBar: AppBarWidget(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add_shopping_cart),
-        backgroundColor: CustomColors.secondary,
-        onPressed: () {
-          // Navigator.of(context).pushNamed(Routes.initialRoute);
-          Navigator.of(context).pushNamed(Routes.form);
-        },
-      ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: 30.0,
-        ),
-        children: ListTile.divideTiles(context: context, tiles: [
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 0),
-            onLongPress: () {
-              // Navigator.of(context).pushNamed(Routes.form);
+    return AnimatedBuilder(
+      animation: CartService.instance,
+      builder: (context, child) {
+        return Scaffold(
+          backgroundColor: CustomColors.background,
+          appBar: AppBarWidget(
+            totalPrice: CartService.instance.totalPrice(),
+          ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(
+              Icons.add_shopping_cart,
+              color: Colors.white,
+            ),
+            backgroundColor: CustomColors.primary,
+            onPressed: () {
+              Navigator.of(context).pushNamed(Routes.form);
             },
-            title: Text('Arroz'),
-            subtitle: Text(
-              'R\$ 2,99 x2',
-              style: TextStyle(fontSize: 13.0),
-            ),
-            trailing: Icon(
-              Icons.chevron_right,
-              color: CustomColors.textSecondary,
-            ),
           ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 0),
-            title: Text('Feijao'),
-            subtitle: Text(
-              'R\$ 2,99 x2',
-              style: TextStyle(fontSize: 13.0),
+          body: ListView.separated(
+            padding: EdgeInsets.symmetric(
+              horizontal: 30.0,
             ),
-            trailing: Icon(
-              Icons.chevron_right,
-              color: CustomColors.textSecondary,
-            ),
+            itemCount: CartService.instance.getProducts().length,
+            itemBuilder: (context, i) {
+              return ListTile(
+                contentPadding: EdgeInsets.symmetric(horizontal: 0),
+                onTap: () {
+                  Navigator.of(context).pushNamed(Routes.form, arguments: i);
+                },
+                title: Text(CartService.instance.getProduct(i).name),
+                subtitle: Text(
+                  "${CartService.instance.getProduct(i).unitPrice()} "
+                  "x${CartService.instance.getProduct(i).quantity}",
+                  style: TextStyle(fontSize: 13.0),
+                ),
+                trailing: Icon(
+                  Icons.chevron_right,
+                  color: CustomColors.textSecondary,
+                ),
+              );
+            },
+            separatorBuilder: (context, i) {
+              return Divider(
+                color: CustomColors.border,
+              );
+            },
           ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 0),
-            title: Text('Batata'),
-            subtitle: Text(
-              'R\$ 2,99 x2',
-              style: TextStyle(fontSize: 13.0),
-            ),
-            trailing: Icon(
-              Icons.chevron_right,
-              color: CustomColors.textSecondary,
-            ),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 0),
-            title: Text('Banana'),
-            subtitle: Text(
-              'R\$ 2,99 x2',
-              style: TextStyle(fontSize: 13.0),
-            ),
-            trailing: Icon(
-              Icons.chevron_right,
-              color: CustomColors.textSecondary,
-            ),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 0),
-            title: Text('Queijo'),
-            subtitle: Text(
-              'R\$ 2,99 x2',
-              style: TextStyle(fontSize: 13.0),
-            ),
-            trailing: Icon(
-              Icons.chevron_right,
-              color: CustomColors.textSecondary,
-            ),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 0),
-            title: Text('Presunto'),
-            subtitle: Text(
-              'R\$ 2,99 x2',
-              style: TextStyle(fontSize: 13.0),
-            ),
-            trailing: Icon(
-              Icons.chevron_right,
-              color: CustomColors.textSecondary,
-            ),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 0),
-            title: Text('Cebola'),
-            subtitle: Text(
-              'R\$ 2,99 x2',
-              style: TextStyle(fontSize: 13.0),
-            ),
-            trailing: Icon(
-              Icons.chevron_right,
-              color: CustomColors.textSecondary,
-            ),
-          ),
-        ]).toList(),
-      ),
+        );
+      },
     );
   }
 }
