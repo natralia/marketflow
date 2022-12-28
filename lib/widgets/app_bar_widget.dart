@@ -55,7 +55,7 @@ class AppBarWidget extends PreferredSize {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Valor total',
+                      "Amount",
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
@@ -63,7 +63,7 @@ class AppBarWidget extends PreferredSize {
                       ),
                     ),
                     Text(
-                      'R\$ 99,90',
+                      "\$ 99,90",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,
