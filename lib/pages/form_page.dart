@@ -46,7 +46,7 @@ class _FormPageState extends State<FormPage> {
                   children: [
                     IconButton(
                       onPressed: (){
-                        debugPrint("${Cart.instance.listProduct()}");
+                        Navigator.of(context).pop();
                       }, 
                       icon: Icon(
                         Icons.chevron_left,
