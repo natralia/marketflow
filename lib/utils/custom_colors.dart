@@ -9,6 +9,7 @@ class CustomColors {
   static final textPrimary = Color(0xFF383838);
   static final textSecondary = Color(0xFFA9A9A9);
   static final disabled = Color(0xFFCED4DA);
+  static final deleteButton = Color(0xFFFF6C6C);
 
   static final linearPrimary = LinearGradient(
       colors: [Color(0xFF52B69A), CustomColors.primary],

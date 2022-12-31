@@ -186,6 +186,19 @@ class _FormPageState extends State<FormPage> {
           ),
         ),
       ),
+      floatingActionButton: index != null
+          ? FloatingActionButton(
+              backgroundColor: CustomColors.deleteButton,
+              onPressed: () {
+                Cart.instance.removeProduct(index);
+                Navigator.of(context).pop();
+              },
+              child: const Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+            )
+          : null,
     );
   }
 }
