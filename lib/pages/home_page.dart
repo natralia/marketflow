@@ -38,25 +38,24 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(
                 horizontal: 30.0,
               ),
-              itemCount: Cart.instance.listProduct().length,
+              itemCount: Cart.instance.getProducts().length,
               itemBuilder: (context, i) {
-                Product product = Cart.instance.getProduct(i);
                 return ListTile(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                   onTap: () {
                     Navigator.of(context).pushNamed("form", arguments: i);
                   },
-                  title: Text(product.name),
+                  title: Text(Cart.instance.getProduct(i).name),
                   subtitle: Row(
                     children: [
                       Text(
-                        NumberFormat.currency(locale: "en_US", symbol: "\$").format(product.price / 100),
+                        Cart.instance.getProduct(i).unitPrice(),
                         style: const TextStyle(fontSize: 13.0),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 4),
                         child: Text(
-                          "x${product.quantity}",
+                          "x${Cart.instance.getProduct(i).quantity}",
                           style: const TextStyle(fontSize: 13.0),
                         ),
                       )

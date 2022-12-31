@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:marketflow/models/product.dart';
 import 'package:marketflow/widgets/quantity_widget.dart';
 
@@ -7,9 +6,14 @@ import '../services/cart.dart';
 import '../utils/custom_colors.dart';
 
 class AddProductModalWidget extends StatefulWidget {
-  const AddProductModalWidget({super.key, required this.product, required this.clearFields});
-
+  final int? currentIndex;
   final Product product;
+  const AddProductModalWidget({
+    this.currentIndex,
+    required this.product,
+    Key? key, required this.clearFields,
+  }) : super(key: key);
+
   final void Function() clearFields;
 
   @override
@@ -86,9 +90,16 @@ class _AddProductModalWidgetState extends State<AddProductModalWidget> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      Cart.instance.addProduct(widget.product);
-                      widget.clearFields();
-                      Navigator.of(context).pushNamed("home");
+                      print(widget.currentIndex);
+                      if (widget.currentIndex != null) {
+                        Cart.instance.updateProduct(
+                          widget.currentIndex!,
+                          widget.product,
+                        );
+                      } else {
+                        Cart.instance.addProduct(widget.product);
+                      }
+                      Navigator.of(context).pop();
                     },
                     child: Text(
                         widget.product.total(),
