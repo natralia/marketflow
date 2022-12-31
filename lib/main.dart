@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:marketflow/models/product.dart';
 import 'package:marketflow/pages/form_page.dart';
 import 'package:marketflow/pages/home_page.dart';
+import 'package:marketflow/utils/custom_colors.dart';
 
 void main() {
-  runApp(App());
+  runApp(const App());
 }
 
 class App extends StatelessWidget {
@@ -18,6 +18,9 @@ class App extends StatelessWidget {
         "home": (context) => const HomePage(),
         "form":  (context) => const FormPage(),
       },
+      theme: ThemeData(
+        colorScheme: ColorScheme.light(primary: CustomColors.primary),
+      ),
       initialRoute: "home",
     );
     

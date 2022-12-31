@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:marketflow/utils/custom_colors.dart';
 
+import '../services/cart.dart';
+
 class AppBarWidget extends PreferredSize {
-  AppBarWidget({super.key})
+  final String totalPrice;
+  AppBarWidget({super.key, required this.totalPrice})
   : super(
     preferredSize: const Size.fromHeight(160),
     child: Stack(
@@ -63,7 +67,7 @@ class AppBarWidget extends PreferredSize {
                       ),
                     ),
                     Text(
-                      "\$ 99,90",
+                      totalPrice,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 24,

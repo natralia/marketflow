@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/product.dart';
 import '../services/cart.dart';
@@ -20,7 +21,9 @@ class _HomePageState extends State<HomePage> {
         builder: (context, child) {
           return Scaffold(
           backgroundColor: CustomColors.background,
-          appBar: AppBarWidget(),
+          appBar: AppBarWidget(
+            totalPrice: NumberFormat.currency(locale: "en_US", symbol: "\$ ").format(Cart.instance.totalPrice()),
+          ),
           floatingActionButton: FloatingActionButton(
               backgroundColor: CustomColors.primary,
               onPressed: () {
@@ -41,13 +44,13 @@ class _HomePageState extends State<HomePage> {
                 return ListTile(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 0),
                   onTap: () {
-                    Navigator.of(context).pushNamed("/form", arguments: i);
+                    Navigator.of(context).pushNamed("form", arguments: i);
                   },
                   title: Text(product.name),
                   subtitle: Row(
                     children: [
                       Text(
-                        "\$ ${product.price}",
+                        NumberFormat.currency(locale: "en_US", symbol: "\$").format(product.price / 100),
                         style: const TextStyle(fontSize: 13.0),
                       ),
                       Padding(
