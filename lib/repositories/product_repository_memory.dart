@@ -2,7 +2,7 @@ import 'package:marketflow/models/product.dart';
 import 'package:marketflow/repositories/product_repository.dart';
 
 class ProductRepositoryMemory implements ProductRepository {
-  List<Product> _products = [];
+  final List<Product> _products = [];
 
   @override
   void save(Product product) {

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:marketflow/utils/custom_colors.dart';
 
-import '../services/cart.dart';
 
 class AppBarWidget extends PreferredSize {
   final String totalPrice;

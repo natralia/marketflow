@@ -90,7 +90,6 @@ class _AddProductModalWidgetState extends State<AddProductModalWidget> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      print(widget.currentIndex);
                       if (widget.currentIndex != null) {
                         Cart.instance.updateProduct(
                           widget.currentIndex!,

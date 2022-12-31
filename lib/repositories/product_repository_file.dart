@@ -16,7 +16,6 @@ class ProductRepositoryFile implements ProductRepository {
     Directory appDocumentsDirectory = await getApplicationDocumentsDirectory();
     String appPath = appDocumentsDirectory.path;
     _file = File("$appPath/database.json");
-    print("Only");
     if (!_file.existsSync()) {
       _file.createSync();
       _file.writeAsStringSync(jsonEncode([]));
