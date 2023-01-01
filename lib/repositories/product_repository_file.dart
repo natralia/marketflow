@@ -8,11 +8,10 @@ class ProductRepositoryFile implements ProductRepository {
   late File _file;
   List<Product> _products = [];
 
-  ProductRepositoryFile() {
-    _loadFile();
-  }
+  @override
+  Future<void> load() async => await _loadFile();
 
-  void _loadFile() async {
+  Future<void> _loadFile() async {
     Directory appDocumentsDirectory = await getApplicationDocumentsDirectory();
     String appPath = appDocumentsDirectory.path;
     _file = File("$appPath/database.json");

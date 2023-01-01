@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    Cart.instance.init();
+    
     return AnimatedBuilder(
         animation: Cart.instance, 
         builder: (context, child) {

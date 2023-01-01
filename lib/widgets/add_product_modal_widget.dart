@@ -98,7 +98,9 @@ class _AddProductModalWidgetState extends State<AddProductModalWidget> {
                       } else {
                         Cart.instance.addProduct(widget.product);
                       }
-                      Navigator.of(context).pop();
+                      while (Navigator.of(context).canPop()) {
+                        Navigator.of(context).pop();
+                      }
                     },
                     child: Text(
                         widget.product.total(),

@@ -10,6 +10,12 @@ class Cart extends ChangeNotifier {
 
   Cart({required this.productRepository});
 
+  Future<void> init() async {
+    await productRepository.load();
+
+    notifyListeners();
+  }
+
   void addProduct(Product product) {
     productRepository.save(product);
 

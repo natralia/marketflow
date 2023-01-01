@@ -5,6 +5,9 @@ class ProductRepositoryMemory implements ProductRepository {
   final List<Product> _products = [];
 
   @override
+  Future<void> load() async {}
+
+  @override
   void save(Product product) {
     _products.add(product);
   }
