@@ -2,7 +2,7 @@
  <img src="./screenshots/Screenshot_1672537384.png" width="320">  <img src="./screenshots/Screenshot_1672537399.png" width="320">
  <img src="./screenshots/Screenshot_1672537420.png" width="320">  <img src="./screenshots/Screenshot_1672537427.png" width="320">
  <img src="./screenshots/Screenshot_1672537434.png" width="320">  <img src="./screenshots/Screenshot_1672537486.png" width="320">
-#### Video Demo:  <URL HERE>
+#### Video Demo:  https://youtu.be/zIaePECo0k8
 
 # Description
 An application developed in flutter that allows the user to register products during their purchases in a market.
